@@ -16,6 +16,7 @@ import InputField from "../../components/common/InputField";
 import {testCampaign} from "../../assets/dummy";
 import {useRouter} from 'next/router'
 import {fetcher} from "../../utils/helpers";
+import config from "../../config"
 
 const  AceEditor = dynamic(
   () => import('../../components/AceEditorComponent'),
@@ -297,7 +298,7 @@ const tags = [{id: 1, name: 'blackfriday'}, {id: 2, name: 'sale'}];
 const CampaignPage = (props) => {
   const router = useRouter();
   const {id} = router.query;
-  const {campaign, host} = props;
+  const {campaign} = props;
 
   const mode = id ? 'edit' : 'create';
   const [errors, setErrors] = useState([]);
@@ -330,7 +331,7 @@ const CampaignPage = (props) => {
 
   const saveCampaign = async () => {
     if (!formValid()) return;
-    const {error, data} = await fetcher(`${host}/api/campaigns`, {
+    const {error, data} = await fetcher(`${config.host}/api/campaigns`, {
         method: 'POST',
         body: JSON.stringify({
           code,
@@ -348,7 +349,7 @@ const CampaignPage = (props) => {
 
   const updateCampaign = async () => {
     if (!formValid()) return;
-    const {error, data} = await fetcher(`${host}/api/campaigns/${id}`, {
+    const {error, data} = await fetcher(`${config.host}/api/campaigns/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
         code,

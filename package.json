@@ -2,7 +2,7 @@
   "name": "create-next-example-app",
   "scripts": {
     "dev": "node ./db_init.js && node server.js",
-    "build": "next dev",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "ace-builds": "^1.4.12",
     "bootstrap": "^4.4.1",
     "clsx": "^1.1.1",
+    "dotenv-webpack": "^6.0.0",
     "express": "^4.17.1",
     "http": "^0.0.1-security",
     "next": "^10.0.3",

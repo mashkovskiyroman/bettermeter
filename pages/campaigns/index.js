@@ -2,7 +2,8 @@ import React from "react";
 import HeaderBlock from "../../components/header/Header";
 import Menu from "../../components/navigation/Menu";
 import Link from 'next/link'
-import {fetcher, getHost} from "../../utils/helpers";
+import {fetcher} from "../../utils/helpers";
+import config from "../../config";
 
 const Campaigns = (props) => {
   const {error, campaigns} = props;
@@ -28,8 +29,7 @@ const Campaigns = (props) => {
 };
 
 Campaigns.getInitialProps = async (ctx) => {
-  const host = `https://${getHost(ctx)}`;
-  const {error, data: campaigns} = await fetcher(`${host}/api/campaigns`);
+  const {error, data: campaigns} = await fetcher(`${config.host}/api/campaigns`);
   return  {error, campaigns};
 };
 

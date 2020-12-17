@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import HeaderBlock from "../../../components/header/Header";
 import Menu from "../../../components/navigation/Menu";
 import CampaignPage from "../../../components/page/CampaignPage";
-import {fetcher, getHost} from "../../../utils/helpers";
+import {fetcher} from "../../../utils/helpers";
+import config from "../../../config";
 import io from 'socket.io-client'
 
 const PageCampaign = (props) => {
@@ -31,16 +32,15 @@ const PageCampaign = (props) => {
       <HeaderBlock/>
       <Menu/>
       {error && (<div>{error.message}</div>)}
-      {campaign && (<CampaignPage campaign={campaign} host={host}/>)}
+      {campaign && (<CampaignPage campaign={campaign}/>)}
     </div>
   );
 };
 
 PageCampaign.getInitialProps = async (ctx) => {
   const id = ctx ? ctx.query.id : null;
-  const host = `https://${getHost(ctx)}`;
-  const {error, data: campaign} = id ? await fetcher(`${host}/api/campaigns/${id}`) : {data: null};
-  return  {error, campaign, host, id};
+  const {error, data: campaign} = id ? await fetcher(`${config.host}/api/campaigns/${id}`) : {data: null};
+  return  {error, campaign, id};
 };
 
 export default PageCampaign

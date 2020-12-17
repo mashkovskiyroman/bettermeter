@@ -2,21 +2,15 @@ import React from "react";
 import HeaderBlock from "../../components/header/Header";
 import Menu from "../../components/navigation/Menu";
 import CampaignPage from "../../components/page/CampaignPage";
-import {getHost} from "../../utils/helpers";
 
-const CreateCampaignPage = ({host}) => {
+const CreateCampaignPage = () => {
   return(
     <div>
       <HeaderBlock/>
       <Menu/>
-      <CampaignPage campaign={null} host={host}/>
+      <CampaignPage campaign={null}/>
     </div>
   );
-};
-
-CreateCampaignPage.getInitialProps = async (ctx) => {
-  const host = `https://${getHost(ctx)}`;
-  return {host};
 };
 
 export default CreateCampaignPage
